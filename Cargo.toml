@@ -6,3 +6,4 @@ authors = ["Juho Hiltunen"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+diceroll = "0.1.0"
