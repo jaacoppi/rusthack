@@ -1,0 +1,8 @@
+[package]
+name = "rusthack"
+version = "0.0.1-SNAPSHOT"
+authors = ["Juho Hiltunen"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
