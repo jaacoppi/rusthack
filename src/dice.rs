@@ -1,7 +1,7 @@
 use diceroll::*;
 extern crate diceroll;
 
-pub fn throw(damage: String) {
+pub fn throw(damage: &String) -> i32 {
     let v: Vec<&str> = damage.split(|c: char| !c.is_numeric()).collect();
 
     let dice: i32 = v[0].parse::<i32>().unwrap();
@@ -12,4 +12,5 @@ pub fn throw(damage: String) {
         .sides(sides)
         .modifier(modifier));
     println!("We rolled {}d{}+{}, which yielded a total of {}.", dice, sides, modifier, result.total);
+    return result.total;
 }
