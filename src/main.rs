@@ -1,5 +1,8 @@
 mod dice;
+mod creatures;
 extern crate diceroll;
+
+use creatures::*;
 
 fn main() {
 
@@ -9,24 +12,4 @@ fn main() {
 
     println!("Hello, world! {0}, {1}, {2} with a {3} with {4} uses", user.name, user.symbol, user.hp, user.item.name, user.item.uses);
     dice::throw(user.item.damage);
-}
-
-
-struct Creature {
-    name: String,
-    symbol: char,
-    hp: i32,
-    item: Item
-}
-
-struct Item {
-    kind: ItemType,
-    name: String,
-    uses: i32,
-    damage: String
-}
-
-enum ItemType {
-    TOOL,
-    WEAPON
 }
