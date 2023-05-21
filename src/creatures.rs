@@ -2,7 +2,7 @@ use dice::throw;
 
 
 pub fn attack(attacker: &mut Creature, defender: &mut Creature) {
-    decide_initiative(attacker, defender);
+    decide_initiative(&attacker.initiative, &defender.initiative);
     let damage = throw(&attacker.item.damage);
     do_damage(defender, damage);
     println!("{}", defender.hp);
@@ -10,9 +10,9 @@ pub fn attack(attacker: &mut Creature, defender: &mut Creature) {
 // status - dead?
 }
 
-fn decide_initiative(attacker: &mut Creature, defender: &mut Creature) -> bool {
-    let attacker_ini = throw(&attacker.initiative);
-    let defender_ini = throw(&defender.initiative);
+fn decide_initiative(attacker: &String, defender: &String) -> bool {
+    let attacker_ini = throw(attacker);
+    let defender_ini = throw(defender);
 
     if attacker_ini >= defender_ini {
         println!("Attacker goes first!");
