@@ -1,6 +1,15 @@
 use dice::throw;
 
 
+impl Creature {
+    pub fn new_random(creature_name: String) -> Creature {
+        let item = Item {kind: ItemType::TOOL, name: String::from("lockpick"), uses: -1, damage: String::from("2d4+1")};
+        let creature = Creature {name: creature_name, symbol: '@', hp: 5, item: item, initiative: String::from("2d4+0")};
+        return creature;
+    }
+
+
+}
 pub fn attack(attacker: &mut Creature, defender: &mut Creature) {
     decide_initiative(&attacker.initiative, &defender.initiative);
     let damage = throw(&attacker.item.damage);
@@ -30,13 +39,6 @@ fn do_damage(target: &mut Creature, amount: i32) {
         println!("Dead!");
     }
 }
-
-pub fn random_creature() -> Creature {
-    let item = Item {kind: ItemType::TOOL, name: String::from("lockpick"), uses: -1, damage: String::from("2d4+1")};
-    let creature = Creature {name: String::from("Juho"), symbol: '@', hp: 5, item: item, initiative: String::from("2d4+0")};
-    return creature;
-}
-
 
 pub struct Creature {
     pub name: String,
