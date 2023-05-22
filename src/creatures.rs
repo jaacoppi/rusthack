@@ -8,15 +8,23 @@ impl Creature {
         return creature;
     }
 
+    fn get_damage(&mut self, amount: i32) {
+        self.hp -= amount;
 
+        if self.hp < 0 {
+            println!("{} is dead!", self.name);
+        }
+    }
 }
 pub fn attack(attacker: &mut Creature, defender: &mut Creature) {
-    decide_initiative(&attacker.initiative, &defender.initiative);
+    let attacker_first = decide_initiative(&attacker.initiative, &defender.initiative);
+    if attacker_first {
     let damage = throw(&attacker.item.damage);
-    do_damage(defender, damage);
-    println!("{}", defender.hp);
-// defender.hp - throw
-// status - dead?
+    defender.get_damage(damage);
+    } else {
+        let damage = throw(&defender.item.damage);
+        attacker.get_damage(damage);
+    }
 }
 
 fn decide_initiative(attacker: &String, defender: &String) -> bool {
@@ -32,13 +40,7 @@ fn decide_initiative(attacker: &String, defender: &String) -> bool {
 
     }
 }
-fn do_damage(target: &mut Creature, amount: i32) {
-    target.hp -= amount;
 
-    if target.hp < 0 {
-        println!("Dead!");
-    }
-}
 
 pub struct Creature {
     pub name: String,
