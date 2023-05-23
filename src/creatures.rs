@@ -4,8 +4,8 @@ use dice::throw;
 impl Creature {
     pub fn new_random(creature_name: String) -> Creature {
         let item = Item {kind: ItemType::TOOL, name: String::from("lockpick"), uses: -1, damage: String::from("2d4+1")};
-        let creature = Creature {name: creature_name, symbol: '@', hp: 5, item, initiative: String::from("2d4+0")};
-        creature
+        
+        Creature {name: creature_name, symbol: '@', hp: 5, item, initiative: String::from("2d4+0")}
     }
 
     fn get_damage(&mut self, amount: i32) {
