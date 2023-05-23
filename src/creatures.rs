@@ -4,8 +4,8 @@ use dice::throw;
 impl Creature {
     pub fn new_random(creature_name: String) -> Creature {
         let item = Item {kind: ItemType::TOOL, name: String::from("lockpick"), uses: -1, damage: String::from("2d4+1")};
-        let creature = Creature {name: creature_name, symbol: '@', hp: 5, item: item, initiative: String::from("2d4+0")};
-        return creature;
+        let creature = Creature {name: creature_name, symbol: '@', hp: 5, item, initiative: String::from("2d4+0")};
+        creature
     }
 
     fn get_damage(&mut self, amount: i32) {
@@ -33,10 +33,10 @@ fn decide_initiative(attacker: &String, defender: &String) -> bool {
 
     if attacker_ini >= defender_ini {
         println!("Attacker goes first!");
-        return true;
+        true
     } else {
         println!("Defender goes first!");
-        return false;
+        false
 
     }
 }

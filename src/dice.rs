@@ -12,5 +12,5 @@ pub fn throw(damage: &String) -> i32 {
         .sides(sides)
         .modifier(modifier));
     println!("We rolled {}d{}+{}, which yielded a total of {}.", dice, sides, modifier, result.total);
-    return result.total;
+    result.total
 }
