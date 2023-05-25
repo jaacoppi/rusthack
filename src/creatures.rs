@@ -11,11 +11,21 @@ impl Creature {
     fn get_damage(&mut self, amount: i32) {
         self.hp -= amount;
 
-        if self.hp < 0 {
+        if !self.is_alive() {
             println!("{} is dead!", self.name);
         }
     }
+
+    fn is_alive(&self) -> bool {
+        if self.hp >= 0 {
+            true
+        } else {
+            false
+        }
+    }
+
 }
+
 pub fn attack(attacker: &mut Creature, defender: &mut Creature) {
     let attacker_first = decide_initiative(&attacker.initiative, &defender.initiative);
     if attacker_first {
