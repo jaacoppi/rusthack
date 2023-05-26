@@ -1,5 +1,4 @@
 use diceroll::*;
-extern crate diceroll;
 
 pub fn throw(damage: &String) -> i32 {
     let v: Vec<&str> = damage.split(|c: char| !c.is_numeric()).collect();

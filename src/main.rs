@@ -1,6 +1,5 @@
-mod dice;
-mod creatures;
-extern crate diceroll;
+pub mod dice;
+pub mod creatures;
 
 use creatures::*;
 

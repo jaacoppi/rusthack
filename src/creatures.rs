@@ -1,4 +1,4 @@
-use dice::throw;
+use crate::dice::throw;
 
 
 impl Creature {
