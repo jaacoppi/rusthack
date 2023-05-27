@@ -23,6 +23,7 @@ impl Creature {
     }
 
     fn get_damage(&mut self, amount: i32) {
+        println!("{0} receives {1} damage!", self.name, amount);
         self.hp -= amount;
 
         if !self.is_alive() {
