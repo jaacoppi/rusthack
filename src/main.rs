@@ -10,8 +10,4 @@ fn main() {
     println!("Enemy:! {0}, {1}, {2} with a {3} with {4} uses", enemy.name, user.symbol, enemy.hp, enemy.item.name, enemy.item.uses);
     user.attack(&mut enemy);
 
-
-
-    println!("Hello, world! {0}, {1}, {2} with a {3} with {4} uses", user.name, user.symbol, user.hp, user.item.name, user.item.uses);
-    dice::throw(&user.item.damage);
 }
