@@ -8,7 +8,7 @@ impl Creature {
         let hp = rng.gen_range(2..7);
         let item = Item {kind: ItemType::TOOL, name: String::from("lockpick"), uses: -1, damage: String::from("2d4+1")};
         
-        Creature {name: creature_name, symbol: '@', hp: hp, item, initiative: String::from("2d4+0")}
+        Creature {name: creature_name, symbol: '@', hp, item, initiative: String::from("2d4+0")}
     }
 
     pub fn attack(&mut self, defender: &mut Creature) {
@@ -32,11 +32,7 @@ impl Creature {
     }
 
     fn is_alive(&self) -> bool {
-        if self.hp >= 0 {
-            true
-        } else {
-            false
-        }
+        self.hp >= 0
     }
 
 }
