@@ -8,7 +8,7 @@ impl Creature {
         let hp = rng.gen_range(2..7);
         let item = Item {kind: ItemType::TOOL, name: String::from("lockpick"), uses: -1, damage: String::from("2d4+1")};
         
-        Creature {name: creature_name, symbol: '@', hp, item, initiative: String::from("2d4+0")}
+        Creature {name: creature_name, hp, item, initiative: String::from("2d4+0")}
     }
 
     pub fn attack(&mut self, defender: &mut Creature) {
@@ -56,7 +56,6 @@ fn decide_initiative(attacker: &String, defender: &String) -> bool {
 
 pub struct Creature {
     pub name: String,
-    pub symbol: char,
     pub hp: i32,
     pub item: Item,
     pub initiative: String
