@@ -18,7 +18,7 @@ impl Creature {
             defender.get_damage(damage);
         } else {
             let damage = throw(&defender.item.damage);
-            &self.get_damage(damage);
+            self.get_damage(damage);
         }
     }
 
