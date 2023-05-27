@@ -11,6 +11,17 @@ impl Creature {
         Creature {name: creature_name, symbol: '@', hp: hp, item, initiative: String::from("2d4+0")}
     }
 
+    pub fn attack(&mut self, defender: &mut Creature) {
+        let attacker_first = decide_initiative(&self.initiative, &defender.initiative);
+        if attacker_first {
+            let damage = throw(&self.item.damage);
+            defender.get_damage(damage);
+        } else {
+            let damage = throw(&defender.item.damage);
+            &self.get_damage(damage);
+        }
+    }
+
     fn get_damage(&mut self, amount: i32) {
         self.hp -= amount;
 
@@ -29,16 +40,7 @@ impl Creature {
 
 }
 
-pub fn attack(attacker: &mut Creature, defender: &mut Creature) {
-    let attacker_first = decide_initiative(&attacker.initiative, &defender.initiative);
-    if attacker_first {
-    let damage = throw(&attacker.item.damage);
-    defender.get_damage(damage);
-    } else {
-        let damage = throw(&defender.item.damage);
-        attacker.get_damage(damage);
-    }
-}
+
 
 fn decide_initiative(attacker: &String, defender: &String) -> bool {
     let attacker_ini = throw(attacker);
