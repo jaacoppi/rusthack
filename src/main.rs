@@ -1,9 +1,15 @@
 pub mod creatures;
 pub mod dice;
 
+use args::{Args, ArgsError};
 use creatures::*;
 
+use std::env;
+use std::process::exit;
+
 fn main() {
+    handle_args();
+
     let name = read_name();
 
     let mut user = Creature::new_random(name);
@@ -35,7 +41,15 @@ fn read_input(max_length: usize) -> Result<String, &'static str> {
 
 fn read_name() -> String {
     loop {
-        println!("What do they call you, warrior?");
+        println!("What do they call you, walet args_string: Vec<String> = env::args().collect();
+    let args: Vec<&str> = args_string.iter().map(|s| &**s).collect();
+    match parse_args(&args) {
+        Ok(()) => true,
+        Err(error) => {
+            println!("{}", error);
+            exit(1);
+        }
+    };rrior?");
         let input = read_input(5);
         if input.is_err() {
             println!(
@@ -46,4 +60,31 @@ fn read_name() -> String {
         }
         break input.unwrap();
     }
+}
+
+fn handle_args() {
+    let args_string: Vec<String> = env::args().collect();
+    let args: Vec<&str> = args_string.iter().map(|s| &**s).collect();
+    match parse_args(&args) {
+        Ok(()) => true,
+        Err(error) => {
+            println!("{}", error);
+            exit(1);
+        }
+    };
+}
+fn parse_args(input: &Vec<&str>) -> Result<(), ArgsError> {
+    let mut args = Args::new("Program name", "Program description");
+    args.flag("h", "help", "Print the usage menu");
+    args.flag("v", "version", "Print version information");
+
+    args.parse(input)?;
+
+    let help = args.value_of("help")?;
+    if help {
+        println!("{}", args.full_usage());
+        return Ok(());
+    }
+
+    Ok(())
 }
