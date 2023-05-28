@@ -41,7 +41,9 @@ fn read_input(max_length: usize) -> Result<String, &'static str> {
 
 fn read_name() -> String {
     loop {
-        println!("What do they call you, walet args_string: Vec<String> = env::args().collect();
+        println!("What do they call you, warrior?");
+
+        let args_string: Vec<String> = env::args().collect();
     let args: Vec<&str> = args_string.iter().map(|s| &**s).collect();
     match parse_args(&args) {
         Ok(()) => true,
@@ -49,7 +51,7 @@ fn read_name() -> String {
             println!("{}", error);
             exit(1);
         }
-    };rrior?");
+    };
         let input = read_input(5);
         if input.is_err() {
             println!(
