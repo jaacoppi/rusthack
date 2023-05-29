@@ -43,15 +43,6 @@ fn read_name() -> String {
     loop {
         println!("What do they call you, warrior?");
 
-        let args_string: Vec<String> = env::args().collect();
-    let args: Vec<&str> = args_string.iter().map(|s| &**s).collect();
-    match parse_args(&args) {
-        Ok(()) => true,
-        Err(error) => {
-            println!("{}", error);
-            exit(1);
-        }
-    };
         let input = read_input(5);
         if input.is_err() {
             println!(
@@ -77,9 +68,9 @@ fn handle_args() {
 }
 fn parse_args(input: &Vec<&str>) -> Result<(), ArgsError> {
     let name = env!("CARGO_PKG_NAME");
-    let _version = env!("CARGO_PKG_VERSION");
+    let version = env!("CARGO_PKG_VERSION");
     let description = env!("CARGO_PKG_DESCRIPTION");
-    let mut args = Args::new(name, description);
+        let mut args = Args::new(name, description);
     args.flag("h", "help", "Print the usage menu");
     args.flag("v", "version", "Print version information");
 
@@ -88,7 +79,13 @@ fn parse_args(input: &Vec<&str>) -> Result<(), ArgsError> {
     let help = args.value_of("help")?;
     if help {
         println!("{}", args.full_usage());
-        return Ok(());
+        exit(0);
+    }
+
+    let ver = args.value_of("version")?;
+    if ver {
+        println!("{}", version);
+        exit(0);
     }
 
     Ok(())
