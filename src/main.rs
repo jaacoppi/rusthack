@@ -76,7 +76,10 @@ fn handle_args() {
     };
 }
 fn parse_args(input: &Vec<&str>) -> Result<(), ArgsError> {
-    let mut args = Args::new("Program name", "Program description");
+    let name = env!("CARGO_PKG_NAME");
+    let _version = env!("CARGO_PKG_VERSION");
+    let description = env!("CARGO_PKG_DESCRIPTION");
+    let mut args = Args::new(name, description);
     args.flag("h", "help", "Print the usage menu");
     args.flag("v", "version", "Print version information");
 

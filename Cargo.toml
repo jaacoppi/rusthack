@@ -2,6 +2,7 @@
 name = "rusthack"
 version = "0.0.1-SNAPSHOT"
 authors = ["Juho Hiltunen"]
+description = "A game used primarily for teaching myself Rust"
 edition = '2021'
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
