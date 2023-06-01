@@ -1,6 +1,6 @@
 use diceroll::*;
 
-pub fn throw(damage: &String) -> i32 {
+pub fn throw(damage: &str) -> i32 {
     let v: Vec<&str> = damage.split(|c: char| !c.is_numeric()).collect();
 
     let dice: i32 = v[0].parse::<i32>().unwrap();

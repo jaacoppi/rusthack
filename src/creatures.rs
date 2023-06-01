@@ -45,7 +45,7 @@ impl Creature {
     }
 }
 
-fn decide_initiative(attacker: &String, defender: &String) -> bool {
+fn decide_initiative(attacker: &str, defender: &str) -> bool {
     let attacker_ini = throw(attacker);
     let defender_ini = throw(defender);
 
