@@ -9,6 +9,7 @@ edition = '2021'
 
 [dependencies]
 args = "2.2.0"
+console = "0.15.7"
 diceroll = "0.1.0"
 getopts = "0.2.21"
 rand = "0.8.5"

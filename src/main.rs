@@ -2,6 +2,7 @@ pub mod creatures;
 pub mod dice;
 
 use args::{Args, ArgsError};
+use console::Term;
 use creatures::*;
 
 use std::env;
@@ -22,7 +23,13 @@ fn main() {
         "Enemy: {0}, {1} hp with a {2} with {3} uses",
         enemy.name, enemy.hp, enemy.item.name, enemy.item.uses
     );
-    user.attack(&mut enemy);
+
+    println!("Press:");
+    println!("y: fight");
+    match read_keypress() {
+        'y'=> user.attack(&mut enemy),
+        key => println!("A coward, eh? You pressed: {}", key),
+    };
 }
 
 fn read_input(max_length: usize) -> Result<String, &'static str> {
@@ -70,7 +77,7 @@ fn parse_args(input: &Vec<&str>) -> Result<(), ArgsError> {
     let name = env!("CARGO_PKG_NAME");
     let version = env!("CARGO_PKG_VERSION");
     let description = env!("CARGO_PKG_DESCRIPTION");
-        let mut args = Args::new(name, description);
+    let mut args = Args::new(name, description);
     args.flag("h", "help", "Print the usage menu");
     args.flag("v", "version", "Print version information");
 
@@ -89,4 +96,15 @@ fn parse_args(input: &Vec<&str>) -> Result<(), ArgsError> {
     }
 
     Ok(())
+}
+
+fn read_keypress() -> char {
+    let term = Term::stdout();
+    loop {
+        let char = Term::read_char(&term);
+        return match char {
+            Ok(value) => value,
+            Err(_) => continue,
+        };
+    }
 }
