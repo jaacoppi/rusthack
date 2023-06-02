@@ -40,8 +40,8 @@ impl Creature {
         }
     }
 
-    fn is_alive(&self) -> bool {
-        self.hp >= 0
+    pub fn is_alive(&self) -> bool {
+        self.hp > 0
     }
 }
 
