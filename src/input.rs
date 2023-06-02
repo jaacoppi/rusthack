@@ -1,6 +1,6 @@
 use console::Term;
 
-pub fn read_input(max_length: usize) -> Result<String, &'static str> {
+pub fn read_line(max_length: usize) -> Result<String, &'static str> {
     let mut input = String::new();
     let len = std::io::stdin()
         .read_line(&mut input)

@@ -4,7 +4,7 @@ mod input;
 
 use args::{Args, ArgsError};
 use creatures::*;
-use input::{read_keypress, read_input};
+use input::{read_keypress, read_line};
 
 use std::env;
 use std::process::exit;
@@ -37,7 +37,7 @@ fn read_name() -> String {
     loop {
         println!("What do they call you, warrior?");
 
-        let input = read_input(5);
+        let input = read_line(5);
         if input.is_err() {
             println!(
                 "{}: That name is too long for a warrior!",
@@ -60,6 +60,7 @@ fn handle_args() {
         }
     };
 }
+
 fn parse_args(input: &Vec<&str>) -> Result<(), ArgsError> {
     let name = env!("CARGO_PKG_NAME");
     let version = env!("CARGO_PKG_VERSION");
