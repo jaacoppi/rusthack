@@ -25,12 +25,21 @@ fn main() {
         enemy.name, enemy.hp, enemy.item.name, enemy.item.uses
     );
 
-    println!("Press:");
-    println!("y: fight");
-    match read_keypress() {
-        'y'=> user.attack(&mut enemy),
-        key => println!("A coward, eh? You pressed: {}", key),
-    };
+    loop {
+        println!("Press:");
+        println!("y: fight");
+        match read_keypress() {
+            'y' => user.attack(&mut enemy),
+            key => println!("A coward, eh? You pressed: {}", key),
+        };
+
+        if !user.is_alive() || !enemy.is_alive() {
+            println!("Someone died!");
+            break;
+        } else {
+            println!("Fight goes on!");
+        }
+    }
 }
 
 fn read_name() -> String {
