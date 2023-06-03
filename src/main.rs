@@ -11,32 +11,7 @@ use std::process::exit;
 fn main() {
     handle_args();
 
-    let name = read_name();
-
-    let mut user = Creature::new_random(name);
-    let mut enemy = Creature::new_random(String::from("Pahis"));
-
-    loop {
-        println!("You:\t {}", user.format_stats());
-        println!("Enemy:\t {}", enemy.format_stats());
-        println!("Press:");
-        println!("y: fight");
-        match read_keypress() {
-            'y' => user.attack(&mut enemy),
-            key => println!("A coward, eh? You pressed: {}", key),
-        };
-        match check_deaths(&user, &enemy) {
-            Some("user") => {
-                println!("You died. The game has ended!");
-                exit(0);
-            },
-            Some("enemy") => {
-                println!("TODO: new enemy, new fight!");
-                exit(0);
-            },
-            _ => (),
-        };
-    }
+    game_loop();
 }
 
 fn read_name() -> String {
@@ -101,4 +76,43 @@ fn check_deaths(user: &Creature, enemy: &Creature) -> Option<&'static str> {
         return Some("enemy");
     }
     None
+}
+
+fn game_loop() {
+    let name = read_name();
+    let mut user = Creature::new_random(name);
+
+    loop {
+        println!("What now?");
+        println!("f: start a fight with a random enemy");
+        println!("q: quit game");
+        match read_keypress() {
+            'f' => fight_loop(&mut user),
+            'q' => exit(0),
+            _ => todo!(),
+        };
+    }
+}
+fn fight_loop(user: &mut Creature) {
+    let mut enemy = Creature::new_random(String::from("Pahis"));
+    loop {
+        println!("You:\t {}", user.format_stats());
+        println!("Enemy:\t {}", enemy.format_stats());
+        println!("Press:");
+        println!("a: attack");
+        match read_keypress() {
+            'a' => user.attack(&mut enemy),
+            key => println!("A coward, eh? You pressed: {}", key),
+        };
+        match check_deaths(&user, &enemy) {
+            Some("user") => {
+                println!("You died. The game has ended!");
+                exit(0);
+            },
+            Some("enemy") => {
+                return;
+            },
+            _ => (),
+        };
+    }
 }
