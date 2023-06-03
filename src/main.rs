@@ -26,13 +26,7 @@ fn main() {
             'y' => user.attack(&mut enemy),
             key => println!("A coward, eh? You pressed: {}", key),
         };
-
-        if !user.is_alive() || !enemy.is_alive() {
-            println!("Someone died!");
-            break;
-        } else {
-            println!("Fight goes on!");
-        }
+        check_deaths(&user, &enemy);
     }
 }
 
@@ -87,4 +81,16 @@ fn parse_args(input: &Vec<&str>) -> Result<(), ArgsError> {
     }
 
     Ok(())
+}
+
+fn check_deaths(user: &Creature, enemy: &Creature) -> bool {
+    if !user.is_alive() {
+        println!("You died. The game has ended!");
+        exit(0);
+    }
+    if !enemy.is_alive() {
+        println!("You have killed the enemy. TODO: new enemy, new fight!");
+        return true;
+    }
+    false
 }
