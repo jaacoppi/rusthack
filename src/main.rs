@@ -5,7 +5,6 @@ mod input;
 use args::{Args, ArgsError};
 use creatures::*;
 use input::{read_keypress, read_line};
-
 use std::env;
 use std::process::exit;
 
@@ -26,7 +25,17 @@ fn main() {
             'y' => user.attack(&mut enemy),
             key => println!("A coward, eh? You pressed: {}", key),
         };
-        check_deaths(&user, &enemy);
+        match check_deaths(&user, &enemy) {
+            Some("user") => {
+                println!("You died. The game has ended!");
+                exit(0);
+            },
+            Some("enemy") => {
+                println!("TODO: new enemy, new fight!");
+                exit(0);
+            },
+            _ => (),
+        };
     }
 }
 
@@ -83,14 +92,13 @@ fn parse_args(input: &Vec<&str>) -> Result<(), ArgsError> {
     Ok(())
 }
 
-fn check_deaths(user: &Creature, enemy: &Creature) -> bool {
+fn check_deaths(user: &Creature, enemy: &Creature) -> Option<&'static str> {
     if !user.is_alive() {
-        println!("You died. The game has ended!");
-        exit(0);
+        return Some("user");
     }
     if !enemy.is_alive() {
-        println!("You have killed the enemy. TODO: new enemy, new fight!");
-        return true;
+        println!("You have killed the enemy.");
+        return Some("enemy");
     }
-    false
+    None
 }
