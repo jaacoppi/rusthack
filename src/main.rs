@@ -15,17 +15,11 @@ fn main() {
     let name = read_name();
 
     let mut user = Creature::new_random(name);
-    println!(
-        "{0}, {1} hp with a {2} with {3} uses",
-        user.name, user.hp, user.item.name, user.item.uses
-    );
     let mut enemy = Creature::new_random(String::from("Pahis"));
-    println!(
-        "Enemy: {0}, {1} hp with a {2} with {3} uses",
-        enemy.name, enemy.hp, enemy.item.name, enemy.item.uses
-    );
 
     loop {
+        println!("You:\t {}", user.format_stats());
+        println!("Enemy:\t {}", enemy.format_stats());
         println!("Press:");
         println!("y: fight");
         match read_keypress() {
