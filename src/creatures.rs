@@ -1,4 +1,5 @@
 use crate::dice::throw;
+use crate::stats::*;
 use rand::*;
 
 impl Creature {
@@ -12,11 +13,14 @@ impl Creature {
             damage: String::from("2d4+1"),
         };
 
+        let stats = Stats::new();
+
         Creature {
             name: creature_name,
             hp,
             item,
             initiative: String::from("2d4+0"),
+            stats
         }
     }
 
@@ -70,6 +74,7 @@ pub struct Creature {
     pub hp: i32,
     pub item: Item,
     pub initiative: String,
+    pub stats: Stats,
 }
 
 pub struct Item {

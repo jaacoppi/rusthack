@@ -1,6 +1,7 @@
 pub mod creatures;
 pub mod dice;
-mod input;
+pub mod input;
+pub mod stats;
 
 use args::{Args, ArgsError};
 use creatures::*;
@@ -108,10 +109,11 @@ fn fight_loop(user: &mut Creature) {
             Some("user") => {
                 println!("You died. The game has ended!");
                 exit(0);
-            },
+            }
             Some("enemy") => {
+                user.stats.add_kill();
                 return;
-            },
+            }
             _ => (),
         };
     }
