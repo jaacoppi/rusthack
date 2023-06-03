@@ -43,6 +43,13 @@ impl Creature {
     pub fn is_alive(&self) -> bool {
         self.hp > 0
     }
+
+    pub fn format_stats(&self) -> String {
+        format!(
+            "{0}, {1} hp with a {2} with {3} uses",
+            self.name, self.hp, self.item.name, self.item.uses
+        )
+    }
 }
 
 fn decide_initiative(attacker: &str, defender: &str) -> bool {
