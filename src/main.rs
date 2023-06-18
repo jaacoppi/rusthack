@@ -101,8 +101,10 @@ fn fight_loop(user: &mut Creature) {
         println!("Enemy:\t {}", enemy.format_stats());
         println!("Press:");
         println!("a: attack");
+        println!("r: run");
         match read_keypress() {
             'a' => user.attack(&mut enemy),
+            'r' => user.run(&mut enemy),
             key => println!("A coward, eh? You pressed: {}", key),
         };
         match check_deaths(&user, &enemy) {

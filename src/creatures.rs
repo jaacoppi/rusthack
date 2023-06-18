@@ -44,6 +44,15 @@ impl Creature {
         }
     }
 
+    pub fn run(&mut self, enemy: &mut Creature) {
+        let attacker_first = decide_initiative(&self.initiative, &enemy.initiative);
+        if attacker_first {
+            todo!("You managed to run away");
+        } else {
+            todo!("Let defender hit, then run away!");
+        }
+    }
+
     pub fn is_alive(&self) -> bool {
         self.hp > 0
     }
