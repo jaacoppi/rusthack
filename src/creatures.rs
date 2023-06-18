@@ -20,7 +20,7 @@ impl Creature {
             hp,
             item,
             initiative: String::from("2d4+0"),
-            stats
+            stats,
         }
     }
 
