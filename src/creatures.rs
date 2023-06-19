@@ -49,7 +49,9 @@ impl Creature {
         if attacker_first {
             todo!("You managed to run away");
         } else {
-            todo!("Let defender hit, then run away!");
+            println!("The enemy sees you run and attacks!");
+            let damage = throw(&enemy.item.damage);
+            self.get_damage(damage);
         }
     }
 
