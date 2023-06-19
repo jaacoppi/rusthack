@@ -47,7 +47,8 @@ impl Creature {
     pub fn run(&mut self, enemy: &mut Creature) {
         let attacker_first = decide_initiative(&self.initiative, &enemy.initiative);
         if attacker_first {
-            todo!("You managed to run away");
+            println!("You managed to run away");
+            return;
         } else {
             println!("The enemy sees you run and attacks!");
             let damage = throw(&enemy.item.damage);

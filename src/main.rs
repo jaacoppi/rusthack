@@ -97,6 +97,7 @@ fn game_loop() {
 fn fight_loop(user: &mut Creature) {
     let mut enemy = Creature::new_random(String::from("Pahis"));
     loop {
+        let mut run: bool = false;
         println!("You:\t {}", user.format_stats());
         println!("Enemy:\t {}", enemy.format_stats());
         println!("Press:");
@@ -104,7 +105,10 @@ fn fight_loop(user: &mut Creature) {
         println!("r: run");
         match read_keypress() {
             'a' => user.attack(&mut enemy),
-            'r' => user.run(&mut enemy),
+            'r' => {
+                user.run(&mut enemy);
+                run = true;
+            }
             key => println!("A coward, eh? You pressed: {}", key),
         };
         match check_deaths(&user, &enemy) {
@@ -118,5 +122,8 @@ fn fight_loop(user: &mut Creature) {
             }
             _ => (),
         };
+        if run {
+            break;
+        }
     }
 }
