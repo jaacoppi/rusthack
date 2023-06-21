@@ -3,7 +3,7 @@ use crate::stats::*;
 use rand::*;
 
 impl Creature {
-    pub fn new_random(creature_name: String) -> Creature {
+    pub fn new_random() -> Creature {
         let mut rng = thread_rng();
         let hp = rng.gen_range(2..7);
         let item = Item {
@@ -15,13 +15,14 @@ impl Creature {
 
         let stats = Stats::new();
 
-        Creature {
-            name: creature_name,
-            hp,
-            item,
-            initiative: String::from("2d4+0"),
-            stats,
-        }
+    match rng.gen_range(1..4) {
+	1 => {  return Creature{name: String::from("Tank"), hp: hp+5, item: item, initiative: String::from("1d4+0"), stats} },
+    2 => {  return Creature{name: String::from("Fast"), hp: hp, item: item, initiative: String::from("2d4+1"), stats} },
+    3 => { return Creature{name: String::from("Default"), hp: hp, item: item, initiative: String::from("1d6+0"), stats }},
+    i32::MIN..=0_i32 | 4_i32..=i32::MAX => todo!("Compiler says we need this case. Don't understand why!"),
+};
+
+
     }
 
     pub fn attack(&mut self, defender: &mut Creature) {

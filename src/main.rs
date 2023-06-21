@@ -81,7 +81,7 @@ fn check_deaths(user: &Creature, enemy: &Creature) -> Option<&'static str> {
 
 fn game_loop() {
     let name = read_name();
-    let mut user = Creature::new_random(name);
+    let mut user = Creature::new_random();
 
     loop {
         println!("What now?");
@@ -95,7 +95,7 @@ fn game_loop() {
     }
 }
 fn fight_loop(user: &mut Creature) {
-    let mut enemy = Creature::new_random(String::from("Pahis"));
+    let mut enemy = Creature::new_random();
     loop {
         let mut run: bool = false;
         println!("You:\t {}", user.format_stats());
